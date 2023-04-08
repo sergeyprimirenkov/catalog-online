@@ -218,7 +218,7 @@
             <div v-if="isEmpty" class="wrapper wrapper--empty">
               <img :src="this.publicPath + 'assets/heart.png'" alt="Сердце" width="150" height="150" />
               <p class="empty-start">Список избранного пуст</p>
-              <p class="empty-offer">Начните добавлять любимые игры, чтобы не потерять</p>
+              <p class="empty-offer">Начните добавлять любимые игры, чтобы не потерять их</p>
             </div>
             <div v-else-if="!isEmpty && showLikedGames.length == 0" class="wrapper--empty">
               <img :src="this.publicPath + 'assets/loupe.png'" alt="Лупа" width="150" height="150" />
@@ -266,6 +266,7 @@
         </vk-tabs>
       </div>
     </section>
+    <button @click="clearids">Очистить избр</button>
     <AppFooter></AppFooter>
   </div>
 </template>
@@ -369,6 +370,10 @@ export default {
           .toLowerCase();
         this.selectedGenre = "все";
       }
+    },
+    clearids: function () {
+      this.$store.commit("clearLikedGames");
+      this.wishlistIds = this.$store.state.wishlistIds;
     }
   },
   watch: {
@@ -384,25 +389,7 @@ export default {
     }
     this.wishlistIds = this.$store.state.wishlistIds;
 
-    // window.addEventListener('load', () => {
-    //   const tabNames = document.querySelectorAll(".uk-tab > li > a");
-    //   tabNames.forEach(tab => {
-    //     let textTab = tab.innerText;
-    //     let arrText = textTab.split(' ');
-    //     let arrLength = arrText.length;
-    //     arrText[arrLength-1] = '<sup class="uk-tab-count-games">' + arrText[arrLength-1] + '</sup >';
-    //     tab.setHTML(arrText.join(' '));
-    //   });
-    // });
-
-    // const myShakeEvent = new Shake({
-    //   threshold: 15, // optional shake strength threshold
-    //   handler: () => // required, called when shake is detected
-    //   {
-    //     alert('Shake detected !');
-    //   }
-    // });
-    // myShakeEvent.start();
+    var _this = this;
 
     //create a new instance of shake.js.
     var myShakeEvent = new Shake({
@@ -411,11 +398,10 @@ export default {
     // start listening to device motion
     myShakeEvent.start();
     // register a shake event
-    window.addEventListener('shake', shakeEventDidOccur, false);
+    window.addEventListener("shake", shakeEventDidOccur, false);
     //shake event callback
     function shakeEventDidOccur() {
-      this.$store.commit("clearLikedGames");
-      this.wishlistIds = this.$store.state.wishlistIds;
+      _this.clearids();
     }
   },
   created() { },

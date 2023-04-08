@@ -461,8 +461,7 @@ export default new Vuex.Store({
       }
     },
     clearLikedGames(state) {
-      alert("lol")
-      Object.assign(state, getDefaultStateLiked())
+      Object.assign(state, getDefaultStateLiked());
     }
   }
 });
