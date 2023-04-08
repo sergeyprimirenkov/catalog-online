@@ -5,6 +5,12 @@ import createPersistedState from "vuex-persistedstate";
 
 Vue.use(Vuex);
 
+const getDefaultStateLiked = () => {
+  return {
+    wishlistIds: [],
+  }
+}
+
 export default new Vuex.Store({
   namespaced: true,
   state: {
@@ -453,6 +459,10 @@ export default new Vuex.Store({
       if (index !== -1) {
         state.wishlistIds.splice(index, 1);
       }
+    },
+    clearLikedGames(state) {
+      alert("lol")
+      Object.assign(state, getDefaultStateLiked())
     }
   }
 });

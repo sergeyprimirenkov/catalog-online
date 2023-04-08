@@ -86,9 +86,9 @@
                   :style="{
                     'background-image':
                       `linear-gradient(180deg,
-                                                                                                                                                                                                                                                                                                                                                                                 rgba(0, 0, 0, 0) 0%,
-                                                                                                                                                                                                                                                                                                                                                                                 rgba(0, 0, 0, 0.35) 75%,
-                                                                                                                                                                                                                                                                                                                                                                                 rgba(0, 0, 0, 0.65) 100%), ` +
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             rgba(0, 0, 0, 0) 0%,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             rgba(0, 0, 0, 0.35) 75%,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             rgba(0, 0, 0, 0.65) 100%), ` +
                       'url(' +
                       game.thumbnail +
                       ')',
@@ -133,9 +133,9 @@
                   :style="{
                     'background-image':
                       `linear-gradient(180deg,
-                                                                                                                                                                                                                                                                                                                                                                                 rgba(0, 0, 0, 0) 0%,
-                                                                                                                                                                                                                                                                                                                                                                                 rgba(0, 0, 0, 0.35) 75%,
-                                                                                                                                                                                                                                                                                                                                                                                 rgba(0, 0, 0, 0.65) 100%), ` +
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             rgba(0, 0, 0, 0) 0%,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             rgba(0, 0, 0, 0.35) 75%,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             rgba(0, 0, 0, 0.65) 100%), ` +
                       'url(' +
                       game.thumbnail +
                       ')',
@@ -231,9 +231,9 @@
                   :style="{
   'background-image':
                       `linear-gradient(180deg,
-                                                                                                                                                                                                                                                                                                                                                                                 rgba(0, 0, 0, 0) 0%,
-                                                                                                                                                                                                                                                                                                                                                                                 rgba(0, 0, 0, 0.35) 75%,
-                                                                                                                                                                                                                                                                                                                                                                                 rgba(0, 0, 0, 0.65) 100%), ` +
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             rgba(0, 0, 0, 0) 0%,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             rgba(0, 0, 0, 0.35) 75%,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             rgba(0, 0, 0, 0.65) 100%), ` +
                       'url(' +
                       game.thumbnail +
                       ')',
@@ -369,7 +369,7 @@ export default {
           .toLowerCase();
         this.selectedGenre = "все";
       }
-    },
+    }
   },
   watch: {
     search(newQuery) {
@@ -394,6 +394,29 @@ export default {
     //     tab.setHTML(arrText.join(' '));
     //   });
     // });
+
+    // const myShakeEvent = new Shake({
+    //   threshold: 15, // optional shake strength threshold
+    //   handler: () => // required, called when shake is detected
+    //   {
+    //     alert('Shake detected !');
+    //   }
+    // });
+    // myShakeEvent.start();
+
+    //create a new instance of shake.js.
+    var myShakeEvent = new Shake({
+      threshold: 15
+    });
+    // start listening to device motion
+    myShakeEvent.start();
+    // register a shake event
+    window.addEventListener('shake', shakeEventDidOccur, false);
+    //shake event callback
+    function shakeEventDidOccur() {
+      this.$store.commit("clearLikedGames");
+      this.wishlistIds = this.$store.state.wishlistIds;
+    }
   },
   created() { },
   computed: {
