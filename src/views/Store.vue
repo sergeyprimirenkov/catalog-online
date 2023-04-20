@@ -15,6 +15,7 @@
           </p>
         </div>
         <div class="product__gallery">
+          <div class="product__loading">Загрузка <span>0</span>%</div>
           <img :src="this.publicPath + 'assets/swipe.svg'" alt="Свайпните для вращения" class="product__swipe">
           <canvas width="300" height="300"></canvas>
         </div>
@@ -39,6 +40,7 @@ export default {
     };
   },
   mounted() {
+    let loadingBlock = document.querySelector(".product__loading");
     let element = document.querySelector('canvas');
     let imagesArray = Array.from(new Array(30), (v, k) => {
       let number = String(k).padStart(1, "1");
@@ -54,6 +56,11 @@ export default {
       draggable: true,
       touchScrollMode: "allowPageScroll",
       poster: '/catalog-online/store/thing/0.jpg',
+    });
+    element.addEventListener("animate-images:loading-progress", function (e) {
+      loadingBlock.querySelector("span").textContent = Math.floor(
+        +e.detail.progress * 100
+      );
     });
   }
 }
@@ -93,6 +100,15 @@ canvas {
   bottom: 16px;
   right: 16px;
   width: 24px;
+}
+
+.product__loading {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 8px;
+  font-size: 12px;
+  background: rgba(0, 0, 0, 0.3);
 }
 
 @media (min-width: 576px) {
