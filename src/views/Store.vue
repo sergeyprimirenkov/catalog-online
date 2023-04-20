@@ -42,7 +42,7 @@ export default {
     let element = document.querySelector('canvas');
     let imagesArray = Array.from(new Array(30), (v, k) => {
       let number = String(k).padStart(1, "1");
-      return `/store/thing/${number}.jpg`;
+      return `/catalog-online/store/thing/${number}.jpg`;
     });
     let instance = new AnimateImages(element, {
       images: imagesArray,
@@ -53,7 +53,7 @@ export default {
       autoplay: false,
       draggable: true,
       touchScrollMode: "allowPageScroll",
-      poster: '/store/thing/0.jpg',
+      poster: '/catalog-online/store/thing/0.jpg',
     });
   }
 }
@@ -82,7 +82,6 @@ canvas {
 
 .product__desc {
   max-width: 600px;
-  text-wrap: balance;
 }
 
 .product__gallery {
