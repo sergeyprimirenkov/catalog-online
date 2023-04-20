@@ -5,13 +5,13 @@
       <ButtonHome></ButtonHome>
       <div class="product">
         <div class="product__description">
-          <h1 class="product__title">Штука <span class="product__price">999 ₽</span></h1>
+          <h1 class="product__title">Хрень <span class="product__price">999 ₽</span></h1>
           <p class="product__desc">
             Универсальный предмет, который может использоваться в различных сферах жизни. Этот товар является
             незаменимым помощником в быту, строительстве, ремонте и других областях.
           </p>
           <p>
-            *<i> Уточнйте наличие у продавца</i>
+            <i>* Уточняйте наличие у продавца</i>
           </p>
         </div>
         <div class="product__gallery">
@@ -81,7 +81,7 @@ canvas {
 }
 
 .product__desc {
-  max-width: 600px;
+  max-width: 500px;
 }
 
 .product__gallery {
